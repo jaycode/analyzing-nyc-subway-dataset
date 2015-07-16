@@ -1,0 +1,32 @@
+---
+title: "Analyze Subway Dataset"
+author: "Jay"
+date: "Thursday, July 16, 2015"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(GGally)
+setwd('c:\\Users\\Jay\\Docker\\nanodegree\\project2\\4.1-visualization')
+df <- read.csv("turnstile_weather_v2.csv")
+pair <- data.frame(
+  fog = df$fog,
+  rain = df$rain, 
+  precipi = df$precipi,
+  tempi = df$tempi,
+  meantempi = df$meantempi,
+  day_week = df$day_week,
+  hour = df$hour,
+  ENTRIESn_hourly = df$hour)
+
+```
+```{r ggpair, cache=TRUE, warning=FALSE, echo=FALSE, cache.path = 'cache/', fig.path='figure/'}
+ggpairs(pair, 
+        params = c(Shape = I("."), outlier.shape = I("."))) + 
+        theme(legend.position = "none",
+        panel.grid.major = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+```
